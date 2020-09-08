@@ -1,0 +1,9 @@
+<div *ngIf="loggedIn$ | async">
+  <h1>
+    Hello, {{name$ | async}}
+  </h1>
+
+  <button mat-raised-button (click)="logOut()">
+    Logout
+  </button>
+</div>

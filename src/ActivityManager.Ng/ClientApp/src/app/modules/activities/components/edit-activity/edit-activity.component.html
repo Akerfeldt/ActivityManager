@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Edit Activity</h1>
+
+<div mat-dialog-content>
+
+  <form class="form-container" (ngSubmit)="onSubmit" [formGroup]="form">
+
+    <mat-form-field color="accent">
+      <input matInput class="form-control" placeholder="Description" [formControl]="description" name="description" required>
+      <mat-error *ngIf="(description.errors | firstError) === 'required'">
+        Description is required
+      </mat-error>
+      <mat-error *ngIf="(description.errors | firstError) === 'maxlength'">
+        Description is too long
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button [disabled]="!(isReady$ | async)" mat-button mat-dialog-close>Cancel</button>
+  <button [disabled]="!(isReady$ | async)" mat-button (click)="onSubmit()" type="submit" color="primary">Save</button>
+</div>

@@ -1,0 +1,55 @@
+@page "/activities"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using ActivityManager.Models
+@attribute [Authorize]
+@inject HttpClient Http
+
+<h1>Activities</h1>
+
+@if (activities == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var activity in activities)
+            {
+            <tr>
+                <td>@activity.Id</td>
+                <td>@activity.Description</td>
+                <td>
+                    <button>edit</button>
+                    <button>delete</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Activity[] activities;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            activities = await Http.GetFromJsonAsync<Activity[]>("api/activities");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+}
