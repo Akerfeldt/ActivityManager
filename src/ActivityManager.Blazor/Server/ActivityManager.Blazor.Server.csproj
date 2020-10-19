@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>ActivityManager.Blazor.Server-5A1D54AB-411A-4DFF-BA30-920C8375A4AF</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

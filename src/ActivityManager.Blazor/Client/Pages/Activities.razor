@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using ActivityManager.Models
 @attribute [Authorize]
+@implements IDisposable
 @inject HttpClient Http
 @inject IActionDispatcher actionDispatcher
 @inject ActivityStore activityStore
