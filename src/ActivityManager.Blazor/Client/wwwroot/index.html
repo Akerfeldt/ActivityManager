@@ -1,9 +1,27 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Security-Policy"
+          content="base-uri 'self';
+               block-all-mixed-content;
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               connect-src https://localhost:44390/
+                           'self';
+               frame-src https://localhost:44390/
+                         'self';
+               script-src https://stackpath.bootstrapcdn.com/
+                          'self'
+                          'unsafe-eval'
+                          'unsafe-inline';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self'
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
     <title>ActivityManager.Blazor</title>
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />

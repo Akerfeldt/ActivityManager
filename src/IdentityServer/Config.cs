@@ -60,7 +60,7 @@ namespace IdentityServer
                 new Client
                 {
                     AccessTokenType = AccessTokenType.Jwt,
-                    AllowedCorsOrigins = { "https://localhost:5001" },
+                    AllowedCorsOrigins = { "https://localhost:44336" },
                     AllowedGrantTypes = GrantTypes.Code,
                     AllowedScopes =
                     {
@@ -72,10 +72,10 @@ namespace IdentityServer
                     AllowOfflineAccess = true,
                     ClientId = "amgr.blazor",
                     ClientName = "Activity Manager Blazor App",
-                    ClientUri = "https://localhost:5001",
+                    ClientUri = "https://localhost:44336",
                     IdentityProviderRestrictions = Array.Empty<string>(),
-                    PostLogoutRedirectUris = { "https://localhost:5001/authentication/logout-callback" },
-                    RedirectUris = { "https://localhost:5001/authentication/login-callback" },
+                    PostLogoutRedirectUris = { "https://localhost:44336/authentication/logout-callback" },
+                    RedirectUris = { "https://localhost:44336/authentication/login-callback" },
                     RefreshTokenExpiration = TokenExpiration.Sliding,
                     RequireClientSecret = false,
                     RequireConsent = false,

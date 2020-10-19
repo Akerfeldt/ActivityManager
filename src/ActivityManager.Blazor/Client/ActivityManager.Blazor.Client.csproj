@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ActivityManager.Blazor.Client.State\ActivityManager.Blazor.Client.State.csproj" />
     <ProjectReference Include="..\..\ActivityManager.Core\ActivityManager.Core.csproj" />
   </ItemGroup>
 

@@ -4,6 +4,8 @@
 @using ActivityManager.Models
 @attribute [Authorize]
 @inject HttpClient Http
+@inject IActionDispatcher actionDispatcher
+@inject ActivityStore activityStore
 
 <h1>Activities</h1>
 
@@ -24,14 +26,14 @@ else
         <tbody>
             @foreach (var activity in activities)
             {
-            <tr>
-                <td>@activity.Id</td>
-                <td>@activity.Description</td>
-                <td>
-                    <button>edit</button>
-                    <button>delete</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@activity.Id</td>
+                    <td>@activity.Description</td>
+                    <td>
+                        <button>edit</button>
+                        <button>delete</button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -44,7 +46,10 @@ else
     {
         try
         {
-            activities = await Http.GetFromJsonAsync<Activity[]>("api/activities");
+            activityStore.Subscribe(ActivityStateChanged);
+
+            var apiActivities = await Http.GetFromJsonAsync<Activity[]>("api/activities");
+            actionDispatcher.Dispatch(new LoadActivities(apiActivities));
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -52,4 +57,14 @@ else
         }
     }
 
+    private void ActivityStateChanged(ActivityState state)
+    {
+        activities = state.Activities;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        activityStore.Unsubscribe(ActivityStateChanged);
+    }
 }
